@@ -140,7 +140,7 @@
       {
         "name": "//replace",
         "description": "Remplacer un type de bloc par un autre dans la sélection",
-        "syntax": "//replace <bloc-source> <bloc-destination>",
+        "syntax": "//replace [bloc-source] <bloc-destination>",
         "params": [
           {
             "name": "bloc_source",
@@ -236,7 +236,7 @@
       {
         "name": "//sphere",
         "description": "Générer une sphère pleine",
-        "syntax": "//sphere <bloc> <rayon> [raised?]",
+        "syntax": "//sphere <bloc> <rayon> [-r]",
         "params": [
           {
             "name": "bloc",
@@ -253,8 +253,8 @@
           {
             "name": "raised",
             "type": "choice",
-            "choices": ["yes", "no"],
-            "default": "no",
+            "choices": ["normal", "surélevé (-r)"],
+            "default": "normal",
             "required": false
           }
         ]
@@ -262,7 +262,7 @@
       {
         "name": "//hsphere",
         "description": "Générer une sphère creuse",
-        "syntax": "//hsphere <bloc> <rayon> [raised?]",
+        "syntax": "//hsphere <bloc> <rayon> [-r]",
         "params": [
           {
             "name": "bloc",
@@ -279,8 +279,8 @@
           {
             "name": "raised",
             "type": "choice",
-            "choices": ["yes", "no"],
-            "default": "no",
+            "choices": ["normal", "surélevé (-r)"],
+            "default": "normal",
             "required": false
           }
         ]
@@ -330,7 +330,7 @@
           {
             "name": "hauteur",
             "type": "number",
-            "default": "1",
+            "default": 1,
             "required": false
           }
         ]
@@ -338,38 +338,50 @@
       {
         "name": "//pyramid",
         "description": "Générer une pyramide pleine",
-        "syntax": "//pyramid <bloc> <taille>",
+        "syntax": "//pyramid <bloc> <taille> [hauteur]",
         "params": [
           {
             "name": "bloc",
-            "type": "text",
+            "type": "block",
             "default": "stone",
             "required": true
           },
           {
             "name": "taille",
             "type": "number",
-            "default": "5",
+            "default": 5,
             "required": true
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": null,
+            "required": false
           }
         ]
       },
       {
         "name": "//hpyramid",
         "description": "Générer une pyramide creuse",
-        "syntax": "//hpyramid <bloc> <taille>",
+        "syntax": "//hpyramid <bloc> <taille> [hauteur]",
         "params": [
           {
             "name": "bloc",
-            "type": "text",
+            "type": "block",
             "default": "stone",
             "required": true
           },
           {
             "name": "taille",
             "type": "number",
-            "default": "5",
+            "default": 5,
             "required": true
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": null,
+            "required": false
           }
         ]
       },
@@ -776,7 +788,7 @@
       {
         "name": "/remove",
         "description": "Retirer les entités dans un rayon",
-        "syntax": "/remove <type> <rayon>",
+        "syntax": "/remove <type> [rayon]",
         "params": [
           {
             "name": "type",
@@ -789,7 +801,7 @@
             "name": "rayon",
             "type": "number",
             "default": "-1",
-            "required": true
+            "required": false
           }
         ]
       }
