@@ -1,0 +1,34 @@
+{
+  "Création sphère basique": {
+    "description": "Crée une sphère de pierre de taille moyenne",
+    "commands": [
+      "//sphere stone 10"
+    ]
+  },
+  "Construction murs maison": {
+    "description": "Sélectionne une zone et crée les murs d'une maison",
+    "commands": [
+      "//pos1",
+      "//pos2",
+      "//walls stone",
+      "//overlay stone_slab"
+    ]
+  },
+  "Nettoyage terrain": {
+    "description": "Nettoie et aplatit un terrain",
+    "commands": [
+      "//removeabove 64",
+      "//removebelow 64",
+      "//smooth 3",
+      "//naturalize"
+    ]
+  },
+  "Copie et rotation": {
+    "description": "Copie la sélection et la fait pivoter de 90°",
+    "commands": [
+      "//copy -e",
+      "//rotate 90",
+      "//paste -a"
+    ]
+  }
+}

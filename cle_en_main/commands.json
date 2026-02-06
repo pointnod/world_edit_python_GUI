@@ -1,0 +1,1045 @@
+{
+  "selection": {
+    "name": "Sélection",
+    "icon": "selection.png",
+    "commands": [
+      {
+        "name": "//wand",
+        "description": "Obtenir l'outil de sélection (hache en bois par défaut)",
+        "syntax": "//wand",
+        "params": []
+      },
+      {
+        "name": "//pos1",
+        "description": "Définir la première position de sélection à votre emplacement actuel",
+        "syntax": "//pos1",
+        "params": []
+      },
+      {
+        "name": "//pos2",
+        "description": "Définir la deuxième position de sélection à votre emplacement actuel",
+        "syntax": "//pos2",
+        "params": []
+      },
+      {
+        "name": "//hpos1",
+        "description": "Définir la première position sur le bloc visé",
+        "syntax": "//hpos1",
+        "params": []
+      },
+      {
+        "name": "//hpos2",
+        "description": "Définir la deuxième position sur le bloc visé",
+        "syntax": "//hpos2",
+        "params": []
+      },
+      {
+        "name": "//sel",
+        "description": "Changer le type de sélection (cuboid, extend, poly, ellipsoid, sphere, cyl, convex, cylinder, line, polyhedron)",
+        "syntax": "//sel [type]",
+        "params": [
+          {
+            "name": "type",
+            "type": "choice",
+            "choices": ["cuboid", "extend", "poly", "ellipsoid", "sphere", "cyl", "convex", "cylinder", "line", "polyhedron"],
+            "default": "cuboid",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//chunk",
+        "description": "Sélectionner le chunk entier où vous vous trouvez",
+        "syntax": "//chunk",
+        "params": []
+      },
+      {
+        "name": "//expand",
+        "description": "Étendre la sélection dans une direction",
+        "syntax": "//expand <montant> [direction] [montant-inverse]",
+        "params": [
+          {
+            "name": "montant",
+            "type": "number",
+            "default": 10,
+            "required": true
+          },
+          {
+            "name": "direction",
+            "type": "choice",
+            "choices": ["up", "down", "north", "south", "east", "west", "me", "forward", "back"],
+            "default": "me",
+            "required": false
+          },
+          {
+            "name": "montant_inverse",
+            "type": "number",
+            "default": null,
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//contract",
+        "description": "Réduire la sélection dans une direction",
+        "syntax": "//contract <montant> [direction]",
+        "params": [
+          {
+            "name": "montant",
+            "type": "number",
+            "default": 10,
+            "required": true
+          },
+          {
+            "name": "direction",
+            "type": "choice",
+            "choices": ["up", "down", "north", "south", "east", "west", "me", "forward", "back"],
+            "default": "me",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//size",
+        "description": "Afficher la taille de la sélection actuelle",
+        "syntax": "//size",
+        "params": []
+      },
+      {
+        "name": "//count",
+        "description": "Compter le nombre de blocs d'un certain type dans la sélection",
+        "syntax": "//count <bloc>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  "blocks": {
+    "name": "Manipulation de blocs",
+    "icon": "blocks.png",
+    "commands": [
+      {
+        "name": "//set",
+        "description": "Remplir la sélection avec un bloc spécifique",
+        "syntax": "//set <bloc>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//replace",
+        "description": "Remplacer un type de bloc par un autre dans la sélection",
+        "syntax": "//replace [bloc-source] <bloc-destination>",
+        "params": [
+          {
+            "name": "bloc_source",
+            "type": "block",
+            "default": null,
+            "required": false
+          },
+          {
+            "name": "bloc_destination",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//overlay",
+        "description": "Recouvrir les blocs de la sélection avec un bloc spécifique",
+        "syntax": "//overlay <bloc>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "grass",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//walls",
+        "description": "Créer des murs autour de la sélection",
+        "syntax": "//walls <bloc>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//faces",
+        "description": "Construire les faces (murs, sol et plafond) de la sélection",
+        "syntax": "//faces <bloc>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//smooth",
+        "description": "Lisser le terrain dans la sélection",
+        "syntax": "//smooth [iterations]",
+        "params": [
+          {
+            "name": "iterations",
+            "type": "number",
+            "default": 1,
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//naturalize",
+        "description": "Naturaliser le terrain (3 couches de terre, puis pierre)",
+        "syntax": "//naturalize",
+        "params": []
+      },
+      {
+        "name": "//center",
+        "description": "Placer un bloc au centre de la sélection",
+        "syntax": "//center <bloc>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  "generation": {
+    "name": "Génération",
+    "icon": "generation.png",
+    "commands": [
+      {
+        "name": "//sphere",
+        "description": "Générer une sphère pleine",
+        "syntax": "//sphere <bloc> <rayon> [-r]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": 5,
+            "required": true
+          },
+          {
+            "name": "raised",
+            "type": "choice",
+            "choices": ["normal", "surélevé (-r)"],
+            "default": "normal",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//hsphere",
+        "description": "Générer une sphère creuse",
+        "syntax": "//hsphere <bloc> <rayon> [-r]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": 5,
+            "required": true
+          },
+          {
+            "name": "raised",
+            "type": "choice",
+            "choices": ["normal", "surélevé (-r)"],
+            "default": "normal",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//cyl",
+        "description": "Générer un cylindre plein",
+        "syntax": "//cyl <bloc> <rayon> [hauteur]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": 5,
+            "required": true
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": 1,
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//hcyl",
+        "description": "Générer un cylindre creux",
+        "syntax": "//hcyl <bloc> <rayon> [hauteur]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": 5,
+            "required": true
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": 1,
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//pyramid",
+        "description": "Générer une pyramide pleine",
+        "syntax": "//pyramid <bloc> <taille> [hauteur]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "taille",
+            "type": "number",
+            "default": 5,
+            "required": true
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": null,
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//hpyramid",
+        "description": "Générer une pyramide creuse",
+        "syntax": "//hpyramid <bloc> <taille> [hauteur]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "block",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "taille",
+            "type": "number",
+            "default": 5,
+            "required": true
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": null,
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//generate",
+        "description": "Générer une forme avec une expression mathématique",
+        "syntax": "//generate <bloc> <expression>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "text",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "expression",
+            "type": "text",
+            "default": "(0.75-sqrt(x^2+y^2+z^2))^2+z^2<0.25^2",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  "clipboard": {
+    "name": "Presse-papier",
+    "icon": "clipboard.png",
+    "commands": [
+      {
+        "name": "//copy",
+        "description": "Copier la sélection dans le presse-papier",
+        "syntax": "//copy [-e]",
+        "params": [
+          {
+            "name": "entities",
+            "type": "choice",
+            "choices": ["avec entités (-e)", "sans entités"],
+            "default": "sans entités",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//cut",
+        "description": "Couper la sélection dans le presse-papier",
+        "syntax": "//cut [bloc-de-remplacement]",
+        "params": [
+          {
+            "name": "bloc_remplacement",
+            "type": "text",
+            "default": "air",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//paste",
+        "description": "Coller le contenu du presse-papier",
+        "syntax": "//paste [-a] [-o]",
+        "params": [
+          {
+            "name": "skip_air",
+            "type": "choice",
+            "choices": ["ignorer air (-a)", "coller air"],
+            "default": "coller air",
+            "required": false
+          },
+          {
+            "name": "origin",
+            "type": "choice",
+            "choices": ["origine (-o)", "position actuelle"],
+            "default": "position actuelle",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//rotate",
+        "description": "Faire pivoter le contenu du presse-papier",
+        "syntax": "//rotate <angle-y> [angle-x] [angle-z]",
+        "params": [
+          {
+            "name": "angle_y",
+            "type": "number",
+            "default": "90",
+            "required": true
+          },
+          {
+            "name": "angle_x",
+            "type": "number",
+            "default": "0",
+            "required": false
+          },
+          {
+            "name": "angle_z",
+            "type": "number",
+            "default": "0",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//flip",
+        "description": "Retourner le contenu du presse-papier",
+        "syntax": "//flip [direction]",
+        "params": [
+          {
+            "name": "direction",
+            "type": "choice",
+            "choices": ["north", "south", "east", "west", "up", "down", "me"],
+            "default": "me",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//load",
+        "description": "Charger un schematic depuis le dossier WorldEdit",
+        "syntax": "//load <fichier>",
+        "params": [
+          {
+            "name": "fichier",
+            "type": "text",
+            "default": "mon_schematic",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//save",
+        "description": "Sauvegarder la sélection en tant que schematic",
+        "syntax": "//save <fichier>",
+        "params": [
+          {
+            "name": "fichier",
+            "type": "text",
+            "default": "mon_schematic",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//schematic list",
+        "description": "Lister tous les schematics disponibles",
+        "syntax": "//schematic list [page]",
+        "params": [
+          {
+            "name": "page",
+            "type": "number",
+            "default": "1",
+            "required": false
+          }
+        ]
+      }
+    ]
+  },
+  "history": {
+    "name": "Historique",
+    "icon": "history.png",
+    "commands": [
+      {
+        "name": "//undo",
+        "description": "Annuler la dernière action WorldEdit",
+        "syntax": "//undo [nombre]",
+        "params": [
+          {
+            "name": "nombre",
+            "type": "number",
+            "default": "1",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//redo",
+        "description": "Refaire la dernière action annulée",
+        "syntax": "//redo [nombre]",
+        "params": [
+          {
+            "name": "nombre",
+            "type": "number",
+            "default": "1",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//clearhistory",
+        "description": "Effacer l'historique des commandes WorldEdit",
+        "syntax": "//clearhistory",
+        "params": []
+      }
+    ]
+  },
+  "utilities": {
+    "name": "Utilitaires",
+    "icon": "utilities.png",
+    "commands": [
+      {
+        "name": "//drain",
+        "description": "Drainer l'eau et la lave dans un rayon",
+        "syntax": "//drain <rayon>",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//fixwater",
+        "description": "Corriger l'eau statique dans un rayon",
+        "syntax": "//fixwater <rayon>",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//fixlava",
+        "description": "Corriger la lave statique dans un rayon",
+        "syntax": "//fixlava <rayon>",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//removeabove",
+        "description": "Retirer les blocs au-dessus de vous",
+        "syntax": "//removeabove [taille] [hauteur]",
+        "params": [
+          {
+            "name": "taille",
+            "type": "number",
+            "default": "1",
+            "required": false
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": "256",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//removebelow",
+        "description": "Retirer les blocs en-dessous de vous",
+        "syntax": "//removebelow [taille] [hauteur]",
+        "params": [
+          {
+            "name": "taille",
+            "type": "number",
+            "default": "1",
+            "required": false
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": "256",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//removenear",
+        "description": "Retirer les blocs d'un type spécifique à proximité",
+        "syntax": "//removenear <bloc> [rayon]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "text",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "50",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//fill",
+        "description": "Remplir les trous avec un bloc dans un rayon",
+        "syntax": "//fill <bloc> <rayon> [profondeur]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "text",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": true
+          },
+          {
+            "name": "profondeur",
+            "type": "number",
+            "default": "1",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//fillr",
+        "description": "Remplir récursivement les espaces vides",
+        "syntax": "//fillr <bloc> <rayon>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "text",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//snow",
+        "description": "Simuler une couche de neige dans un rayon",
+        "syntax": "//snow [rayon]",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//thaw",
+        "description": "Faire fondre la neige et la glace dans un rayon",
+        "syntax": "//thaw [rayon]",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//green",
+        "description": "Transformer la terre en herbe dans un rayon",
+        "syntax": "//green [rayon]",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "10",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//ex",
+        "description": "Éteindre le feu à proximité",
+        "syntax": "//ex [rayon]",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "40",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "/butcher",
+        "description": "Tuer les mobs dans un rayon",
+        "syntax": "/butcher [rayon]",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "-1",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "/remove",
+        "description": "Retirer les entités dans un rayon",
+        "syntax": "/remove <type> [rayon]",
+        "params": [
+          {
+            "name": "type",
+            "type": "choice",
+            "choices": ["items", "arrows", "boats", "minecarts", "tnt", "xp", "paintings"],
+            "default": "items",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "-1",
+            "required": false
+          }
+        ]
+      }
+    ]
+  },
+  "region": {
+    "name": "Régions",
+    "icon": "region.png",
+    "commands": [
+      {
+        "name": "//move",
+        "description": "Déplacer la sélection dans une direction",
+        "syntax": "//move [montant] [direction] [bloc-de-remplacement]",
+        "params": [
+          {
+            "name": "montant",
+            "type": "number",
+            "default": "1",
+            "required": false
+          },
+          {
+            "name": "direction",
+            "type": "choice",
+            "choices": ["up", "down", "north", "south", "east", "west", "me"],
+            "default": "me",
+            "required": false
+          },
+          {
+            "name": "bloc_remplacement",
+            "type": "text",
+            "default": "air",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//stack",
+        "description": "Empiler la sélection plusieurs fois dans une direction",
+        "syntax": "//stack [nombre] [direction]",
+        "params": [
+          {
+            "name": "nombre",
+            "type": "number",
+            "default": "1",
+            "required": false
+          },
+          {
+            "name": "direction",
+            "type": "choice",
+            "choices": ["up", "down", "north", "south", "east", "west", "me"],
+            "default": "me",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//deform",
+        "description": "Déformer la sélection avec une expression",
+        "syntax": "//deform <expression>",
+        "params": [
+          {
+            "name": "expression",
+            "type": "text",
+            "default": "y+=0.5",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  "brushes": {
+    "name": "Brosses",
+    "icon": "brushes.png",
+    "commands": [
+      {
+        "name": "//br sphere",
+        "description": "Créer une brosse sphère",
+        "syntax": "//br sphere <bloc> [rayon]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "text",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "2",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//br cyl",
+        "description": "Créer une brosse cylindre",
+        "syntax": "//br cyl <bloc> [rayon] [hauteur]",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "text",
+            "default": "stone",
+            "required": true
+          },
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "2",
+            "required": false
+          },
+          {
+            "name": "hauteur",
+            "type": "number",
+            "default": "1",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "//br smooth",
+        "description": "Créer une brosse de lissage",
+        "syntax": "//br smooth [rayon] [iterations]",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "2",
+            "required": false
+          },
+          {
+            "name": "iterations",
+            "type": "number",
+            "default": "4",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "/none",
+        "description": "Désactiver la brosse sur l'outil actuel",
+        "syntax": "/none",
+        "params": []
+      },
+      {
+        "name": "//mask",
+        "description": "Définir un masque pour les brosses",
+        "syntax": "//mask <masque>",
+        "params": [
+          {
+            "name": "masque",
+            "type": "text",
+            "default": "#existing",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//material",
+        "description": "Changer le matériau de la brosse",
+        "syntax": "//material <bloc>",
+        "params": [
+          {
+            "name": "bloc",
+            "type": "text",
+            "default": "stone",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "//size",
+        "description": "Changer la taille de la brosse",
+        "syntax": "//size <rayon>",
+        "params": [
+          {
+            "name": "rayon",
+            "type": "number",
+            "default": "5",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  "navigation": {
+    "name": "Navigation",
+    "icon": "navigation.png",
+    "commands": [
+      {
+        "name": "/jumpto",
+        "description": "Se téléporter au bloc visé",
+        "syntax": "/jumpto",
+        "params": []
+      },
+      {
+        "name": "/thru",
+        "description": "Traverser un mur",
+        "syntax": "/thru",
+        "params": []
+      },
+      {
+        "name": "/ascend",
+        "description": "Monter d'un niveau",
+        "syntax": "/ascend",
+        "params": []
+      },
+      {
+        "name": "/descend",
+        "description": "Descendre d'un niveau",
+        "syntax": "/descend",
+        "params": []
+      },
+      {
+        "name": "/ceil",
+        "description": "Monter au plafond",
+        "syntax": "/ceil [clearance]",
+        "params": [
+          {
+            "name": "clearance",
+            "type": "number",
+            "default": "0",
+            "required": false
+          }
+        ]
+      },
+      {
+        "name": "/up",
+        "description": "Monter verticalement d'un nombre de blocs",
+        "syntax": "/up <distance>",
+        "params": [
+          {
+            "name": "distance",
+            "type": "number",
+            "default": "1",
+            "required": true
+          }
+        ]
+      }
+    ]
+  }
+}
