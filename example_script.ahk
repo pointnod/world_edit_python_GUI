@@ -1,31 +1,32 @@
-; WorldEdit GUI - Exemple de script AutoHotkey
-; Ce fichier montre comment les commandes sont automatisées
-; Il est généré automatiquement par l'application
+; WorldEdit GUI - Exemple de script AutoHotkey (v2)
+; Envoie une liste de commandes dans Minecraft en respectant les délais.
 
-#NoEnv
-SetWorkingDir %A_ScriptDir%
+#Requires AutoHotkey v2.0+
+#SingleInstance Force
 
-; Configuration
-SetKeyDelay, 50, 50
+; === Configuration utilisateur ===
+commands := ["//set stone", "//replace stone dirt", "//undo"]
+delay := 2000
+hotkey := "F8"
+stepDelay := 200
 
-; Exemple: Créer une sphère de pierre
-Send, //sphere stone 10
-Send, {Enter}
-Sleep, 100
+; Applique le hotkey configurable.
+Hotkey(hotkey, RunCommandSequence)
 
-; Exemple: Définir les positions
-Send, //pos1
-Send, {Enter}
-Sleep, 100
+RunCommandSequence(*) {
+    if !WinActive("ahk_exe javaw.exe") {
+        return
+    }
 
-Send, //pos2
-Send, {Enter}
-Sleep, 100
-
-; Exemple: Remplir avec un bloc
-Send, //set stone
-Send, {Enter}
-Sleep, 100
-
-MsgBox, Script d'exemple terminé!
-ExitApp
+    for _, cmd in commands {
+        Send("{Esc}")
+        Sleep(stepDelay)
+        Send("t")
+        Sleep(stepDelay)
+        A_Clipboard := cmd
+        Send("^v")
+        Sleep(stepDelay)
+        Send("{Enter}")
+        Sleep(delay)
+    }
+}
