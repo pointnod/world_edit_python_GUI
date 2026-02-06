@@ -345,6 +345,8 @@ class WorldEditGUI:
                     command_parts.append("-a")
                 elif "(-o)" in value:
                     command_parts.append("-o")
+                elif "(-r)" in value:
+                    command_parts.append("-r")
                 elif value and value not in ["sans entités", "coller air", "position actuelle"]:
                     command_parts.append(value)
         
