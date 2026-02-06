@@ -1,0 +1,42 @@
+[
+  {
+    "command": "//br sphere stone 2",
+    "category": "brushes",
+    "timestamp": "2026-02-06T12:58:41.547910"
+  },
+  {
+    "command": "//br smooth 2 4",
+    "category": "brushes",
+    "timestamp": "2026-02-06T12:56:39.157851"
+  },
+  {
+    "command": "//br smooth 2 4",
+    "category": "brushes",
+    "timestamp": "2026-02-06T12:55:23.257247"
+  },
+  {
+    "command": "//br smooth 2 4",
+    "category": "brushes",
+    "timestamp": "2026-02-06T12:55:16.646345"
+  },
+  {
+    "command": "//paste",
+    "category": "clipboard",
+    "timestamp": "2026-02-06T12:35:09.309406"
+  },
+  {
+    "command": "//sphere stone 5 no",
+    "category": "generation",
+    "timestamp": "2026-02-06T12:09:04.961417"
+  },
+  {
+    "command": "//wand",
+    "category": "selection",
+    "timestamp": "2026-02-06T12:08:51.959617"
+  },
+  {
+    "command": "//wand",
+    "category": "selection",
+    "timestamp": "2026-02-06T12:08:43.111311"
+  }
+]
